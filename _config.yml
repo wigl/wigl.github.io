@@ -1,0 +1,13 @@
+# Site settings
+title: Objective-C
+email: 
+description:
+github_username:  wigl
+permalink: /:year/:month/:day/:title/
+markdown: kramdown
+
+# highlight
+# 本地用rouge, github上用pygments
+# highlighter: pygments
+# highlighter: rouge
+# highlighter: false
