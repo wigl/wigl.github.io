@@ -113,7 +113,7 @@ code
 跳转至相对主机位置 [测试文章](/2016/04/02/test/)
 
 ````markdown
-跳转至 [首页](htto://wigl.github.io);
+跳转至 [首页](http://wigl.github.io);
 跳转至相对主机位置 [测试文章](/2016/04/02/test/);
 ````
 
