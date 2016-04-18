@@ -241,8 +241,7 @@ excerpt:
 1.`startUpdatingLocation`不管位置有没有发生变化，都会进行定位，定位频率比较高。当程序在后台运行的时候，也会因为资源紧张被系统挂起（suspend）或终止（terminate），从而停止定位更新。
 
 2.`startMonitoringSignificantLocationChanges`根据基站定位，所以，只有设备更换基站的时候调用。
-但是苹果文档中[On This Page 
-Reduce Location Accuracy and Duration](https://developer.apple.com/library/ios/documentation/Performance/Conceptual/EnergyGuide-iOS/LocationBestPractices.html)这样说：
+但是苹果文档中[Reduce Location Accuracy and Duration](https://developer.apple.com/library/ios/documentation/Performance/Conceptual/EnergyGuide-iOS/LocationBestPractices.html)这样说：
 
 > Significant-change location updates wake the system and your app once every 15 minutes, at minimum, even if no location changes have occurred.
 > 

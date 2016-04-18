@@ -112,9 +112,15 @@ code
 
 跳转至相对主机位置 [测试文章](/2016/04/02/test/)
 
+跳转至某个目录 [图片链接](#图片链接)
+
+<mark>标注，背景颜色</mark>
+
 ````markdown
 跳转至 [首页](http://wigl.github.io);
 跳转至相对主机位置 [测试文章](/2016/04/02/test/);
+跳转至某个目录 [图片链接](#图片链接)
+<mark>标注，背景颜色</mark>
 ````
 
 *参考式*的链接是在链接文字的括号后面再接上另一个方括号，而在第二个方括号里面要填入(id)用以辨识链接的标记：
@@ -143,10 +149,12 @@ This is [an example][id] reference-style link.
 ```
 
 
-
-##### 图片链接
+##### <a name="图片链接"></a>图片链接
 
 ````markdown
+目录别名，跳转用：
+##### <a name="图片链接"></a>图片链接
+
 ![Alt text](/path/to/img.jpg)
 ![Alt text](/path/to/img.jpg "Optional title")
 ````
@@ -165,12 +173,13 @@ This is [an example][id] reference-style link.
 
 <address@example.com>
 
+`上脚标`[^emphasize1]
+
 ````markdown
 <http://wigl.github.io>
 <address@example.com>
+上脚标[^emphasize1]
 ````
-
-
 
 #### 反斜杠
 
@@ -190,3 +199,7 @@ _   底线
 .   英文句点
 !   惊叹号
 ```
+
+
+
+[^emphasize1]: 这是上脚表注释1.
