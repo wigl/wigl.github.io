@@ -197,7 +197,7 @@ excerpt:
 #### 1.和iOS后台定位步骤一样
 
 #### <font color="red">2.取消后台定位模式</font>
-<font color="red">特别注意：</font>使用关键位置定位，不需要开始后台定位模式，即不需要执行[iOS后台定位中的第一步](#ios-1)。也就是说，不需要在`info.plist`文件中添加：
+**<font color="red">特别注意：</font>**使用关键位置定位，不需要开始后台定位模式，即不需要执行[iOS后台定位中的第一步](#ios-1)。也就是说，不需要在`info.plist`文件中添加：
 
 ````
 <key>UIBackgroundModes</key>
@@ -214,9 +214,15 @@ PS：苹果会根据`info.plist`的key值判断是否开始了后台定位模式
 
 > 1. key一定要选择`NSLocationAlwaysUsageDescription`。上面介绍过，`NSLocationWhenInUseUsageDescription `不支持关键位置定位。
 > 
-> 2. 使用关键位置定位：`[manager startMonitoringSignificantLocationChanges]`，而不是`[manager startUpdatingLocation]`.
+> 2. 使用关键位置定位：`[manager startMonitoringSignificantLocationChanges]`，而不是`[manager startUpdatingLocation]`。
 > 
-> 3. 应用未运行的时候，如果位置发生重大改变，系统会在后台自动启动程序，如果这时候需要向服务器上传位置信息，需要调用`beginBackgroundTaskWithExpirationHandler `方法，如下：
+
+#### 4.回调时间
+应用未运行的时候，如果位置发生重大改变，系统会在后台自动启动程序，并进行回调`locationManager:didUpdateLocations:`,根据苹果文档[Location and Maps Programming Guide](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/LocationAwarenessPG/RegionMonitoring/RegionMonitoring.html#//apple_ref/doc/uid/TP40009497-CH9)，回调时间只有**10s**：
+
+> In iOS, regions associated with your app are tracked at all times, including when the app isn’t running. If a region boundary is crossed while an app isn’t running, that app is relaunched into the background to handle the event. Similarly, if the app is suspended when the event occurs, it’s woken up and given a short amount of time **(around 10 seconds)** to handle the event. When necessary, an app can request more background execution time using the beginBackgroundTaskWithExpirationHandler: method of the UIApplication class.
+
+所以，如果我们这时候需要执行耗时操作，比如向服务器上传位置信息，需要调用`beginBackgroundTaskWithExpirationHandler `方法，如下：
 > 
 > ````
 > //如果你需要上传位置信息，且程序处于后台，需要调用beginBackgroundTaskWithExpirationHandler来执行网络请求操作
@@ -239,7 +245,7 @@ if ([UIApplication sharedApplication].applicationState == UIApplicationStateBack
 > 具体代码可以在[这里](https://github.com/wigl/BackgroundLocationDemo)下载查看。
 > 
 
-#### 3.程序运行效果
+#### 5.程序运行效果
 
 程序运行效果如下图：
 ![图片](/image/ios_location_introduction/noruning_location.png)
