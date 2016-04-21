@@ -93,7 +93,7 @@ excerpt:
 #### 6. 开始定位
 `[manager startUpdatingLocation]`
 
-#### 具体代码如下
+#### 具体代码
 
 ````
 #import "AppDelegate.h"
@@ -210,7 +210,7 @@ excerpt:
 
 PS：苹果会根据`info.plist`的key值判断是否开始了后台定位模式。
 
-#### 3.其他注意以及需要修改的地方
+#### 3.注意以及需要修改的地方
 
 > 1. key一定要选择`NSLocationAlwaysUsageDescription`。上面介绍过，`NSLocationWhenInUseUsageDescription `不支持关键位置定位。
 > 
@@ -223,6 +223,7 @@ PS：苹果会根据`info.plist`的key值判断是否开始了后台定位模式
 > In iOS, regions associated with your app are tracked at all times, including when the app isn’t running. If a region boundary is crossed while an app isn’t running, that app is relaunched into the background to handle the event. Similarly, if the app is suspended when the event occurs, it’s woken up and given a short amount of time **(around 10 seconds)** to handle the event. When necessary, an app can request more background execution time using the beginBackgroundTaskWithExpirationHandler: method of the UIApplication class.
 
 所以，如果我们这时候需要执行耗时操作，比如向服务器上传位置信息，需要调用`beginBackgroundTaskWithExpirationHandler `方法，如下：
+
 > 
 > ````
 > //如果你需要上传位置信息，且程序处于后台，需要调用beginBackgroundTaskWithExpirationHandler来执行网络请求操作
@@ -241,9 +242,9 @@ if ([UIApplication sharedApplication].applicationState == UIApplicationStateBack
     });
 }
 > ````
-> 
-> 具体代码可以在[这里](https://github.com/wigl/BackgroundLocationDemo)下载查看。
-> 
+
+具体代码可以在[这里](https://github.com/wigl/BackgroundLocationDemo)下载查看。
+
 
 #### 5.程序运行效果
 
