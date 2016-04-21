@@ -196,7 +196,21 @@ excerpt:
 
 #### 1.和iOS后台定位步骤一样
 
-#### 2.注意以及需要修改的地方
+#### <font color="red">2.取消后台定位模式</font>
+<font color="red">特别注意：</font>使用关键位置定位，不需要开始后台定位模式，即不需要执行[iOS后台定位中的第一步](#ios-1)。也就是说，不需要在`info.plist`文件中添加：
+
+````
+<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
+````
+
+如果开启了后台定位模式，却没有实现相应的后台定位功能，上架的时候很可能会被苹果拒绝。
+
+PS：苹果会根据`info.plist`的key值判断是否开始了后台定位模式。
+
+#### 3.其他注意以及需要修改的地方
 
 > 1. key一定要选择`NSLocationAlwaysUsageDescription`。上面介绍过，`NSLocationWhenInUseUsageDescription `不支持关键位置定位。
 > 
@@ -205,13 +219,21 @@ excerpt:
 > 3. 应用未运行的时候，如果位置发生重大改变，系统会在后台自动启动程序，如果这时候需要向服务器上传位置信息，需要调用`beginBackgroundTaskWithExpirationHandler `方法，如下：
 > 
 > ````
-> //如果你需要上传位置信息
-    if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
-        [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-            //上传地理位置信息..
-            NSURLSession *session = ...
-        }];
-    }
+> //如果你需要上传位置信息，且程序处于后台，需要调用beginBackgroundTaskWithExpirationHandler来执行网络请求操作
+if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
+    UIApplication *application = [UIApplication sharedApplication];
+    //申请开台时间
+    __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
+        [application endBackgroundTask:bgTask];
+        bgTask = UIBackgroundTaskInvalid;
+    }];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //上传地理位置信息..
+//            NSURLSession *session = ...
+        [application endBackgroundTask:bgTask];
+        bgTask = UIBackgroundTaskInvalid;
+    });
+}
 > ````
 > 
 > 具体代码可以在[这里](https://github.com/wigl/BackgroundLocationDemo)下载查看。
