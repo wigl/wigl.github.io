@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "iOS后台定位"
+title:  "iOS定位"
 date:   2016-04-14 00:00:00
 categories: iOS后台
 excerpt: 
@@ -69,12 +69,12 @@ excerpt:
 > > * `NSLocationAlwaysUsageDescription` 支持区域监控(`monitor regions`)和关键位置改变定位服务(`significant location change service`)，而`NSLocationWhenInUseUsageDescription`不支持。
 > > 
 > > * 因为`NSLocationWhenInUseUsageDescription`不支持关键位置定位服务，所以当应用被强制关闭后，系统不会再自动唤醒程序进行定位。具体请查看看本文第三部分的[iOS应用未启动时进行定位](#ios-2)。
->  
 
-**iOS 9 之后**
-
-> iOS 9后，要想使用后台定位，还必须将`allowsBackgroundLocationUpdates`设置为`YES`。详细信息请看本文第二部分的[iOS后台定位](#ios-1)。
+> <font color="red">特别注意：</font>今年（2016年）4月份左右，苹果更新了审核规则，如果需要使用后台定位，即使用key值为`NSLocationAlwaysUsageDescription`，那么必须详细说明为何使用后台定位，也就是说`NSLocationAlwaysUsageDescription`的描述不能为空，本人就是因为未填写具体使用后台定位原因而导致应用被拒。另外`NSLocationAlwaysUsageDescription`主要用于后台定位、关键位置定位以及区域监控等。苹果对此审核比较严格，如果应用没有足够的理由使用后台定位，很可能会被拒绝。
 > 
+> 所以，如果应用只需要在使用的时候进行定位，那么key至一定要使用`NSLocationWhenInUseUsageDescription`，避免应用被拒。
+> 
+
 
 #### 2. 导入头文件
 定位服务基于`Core Location framework`框架，所以必须先导入头文件`#import <CoreLocation/CoreLocation.h>`。
