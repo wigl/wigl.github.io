@@ -184,6 +184,21 @@ iOS 7后新增，远程推送后台刷新，当我们发送一条带有 content-
 ### 延长后台持续时间
 最后顺带说下这个方法，`beginBackgroundTaskWithExpirationHandler`这个API是iOS 4后加入的，当程序进入后台后，可以调用该方法向系统申请后台运行，最多10min，之后应用程序进入休眠状态。在iOS 7 之前，无论手机是否关闭屏幕，程序都会一直在后台运行，直到运行10min；iOS7又做了改变，当用户关闭屏幕，App也会同时进入休眠状态，重新唤醒时，系统重新运行剩下的时间；总的来说还是10min。
 
+**示例代码：**
+
+````
+__block UIBackgroundTaskIdentifier backgroundTask =[application beginBackgroundTaskWithExpirationHandler:^{
+    [application endBackgroundTask:backgroundTask];
+    backgroundTask = UIBackgroundTaskInvalid;
+}];
+dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    //异步执行后台代码
+    //执行完成后，停止后台
+    [application endBackgroundTask:backgroundTask];
+    backgroundTask = UIBackgroundTaskInvalid;
+})
+````
+
 *注：本文参考了objc中国中的 [iOS 7 的多任务](http://objccn.io/issue-5-5/)*   
    
    
