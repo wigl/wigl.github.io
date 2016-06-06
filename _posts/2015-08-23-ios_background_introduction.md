@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "iOS后台机制"
-date:   2016-04-12 00:00:00
+date:   2015-08-23 00:00:00
 categories: iOS后台
 excerpt: 
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Markdown语法简要介绍"
-date:   2016-04-05 00:00:00
+date:   2014-08-05 00:00:00
 categories: Markdown
 excerpt: 
 ---
