@@ -163,3 +163,11 @@ typedef void(^downloadCompletionBlock)(UIImage *image); //下载完成后的bloc
 @end
 
 ````
+
+### NSOperation和GCD的区别
+
+> 1. GCD为C语言API；NSOperation为OC语言，且面向对象。因此GCD相比执行速度更快些。
+> 2. GCD队列为FIFO，且设置任务之间的依赖比较复杂（可以使用信号量等方法）；NSOperation的队列可以设置任务的设置依赖，执行优先级等。
+> 3. GCD设置最大并发数比较复杂；而NSOperation可以很方便设置。
+> 4. NSOperation队列可以取消、暂停、恢复。
+> 5. NSOperation支持KVO，可以监测任务是否在执行、是否结束、是否取消等。
