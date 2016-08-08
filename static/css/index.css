@@ -1,87 +1,43 @@
-/**
- * Reset some basic elements
- */
-/* commom */
-body {
-	background-image: url(http://7q5cdt.com1.z0.glb.clouddn.com/bg-canvas_bg.jpg);
-    font-family: 'Microsoft YaHei', 'SimHei', sans-serif;
-}
-article p{
-	/*text-indent: 2em;*/
-}
-pre{
-	padding: 0;
-	background: none;
-}
-
-pre code{
-	font-size: 14px;
-}
-
-table{
-	border-top:2px solid #777;
-	border-bottom: 2px solid #777;
-	margin: 8px 0;
-}
-table thead{
-	border-bottom: 1px dashed #777;
-	background-color: #aaa;
-	color:#fff;
-}
-table th{
-	padding: 2px 10px;
-}
-table tr:nth-child(2n){
-	background-color: #E5EAED;
-}
-table td{
-	padding: 2px 10px;
-	vertical-align: top;
-}
-
-
-#index a:link {color: #005}		/* 未访问的链接 */
-#index a:visited {color: #669}	/* 已访问的链接 */
-#index a:hover {color: #336;text-decoration: none;}	/* 鼠标移动到链接上 */
-#index a:active {color: #99b}	/* 选定的链接 */
-
 /* navbar */
 nav{
-	-webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-	-moz-box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-	-o-box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-	box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-
-	border-radius: 0;
+	background-color: #0294FC;
 }
-.navbar-nav li{
+
+.navbar-header a{
+	color: rgba(255,255,255,0.8);
+}
+
+.navbar-header:hover a{
+	color: rgba(255,255,255,1);
+}
+
+.navbar-nav a{
 	width: 95px;
+	color: rgba(255,255,255,0.8);
 	text-align: center;
 }
+.navbar-nav:hover a{
+	color: rgba(255,255,255,1);
+}
+
+
 
 /* index main */
 .main{
 	min-height: 800px;
 }
-.post-area{
-	
-	background-color:#f8f8fd;
-	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4),0 0 30px rgba(10,10,0,0.1) inset;
-	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4),0 0 30px rgba(10,10,0,0.1) inset;
-	-o-box-shadow: 0 1px 2px rgba(0,0,0,0.4),0 0 30px rgba(10,10,0,0.1) inset;
-	box-shadow: 0 1px 2px rgba(0,0,0,0.4),0 0 30px rgba(10,10,0,0.1) inset;
-}
+
 .post-list-header{
-	padding: 15px 30px;
+	padding: 15px 1px;
 	border-bottom: 1px solid #c0c0c0;
 	font-size: 30px;
 	font-weight: bold;
 }
 .post-list-item{
 	display: block;
-	padding:8px 30px 10px 30px; 
+	padding:8px 20px 1px 30px; 
 	border-bottom:1px solid #ddd;
-
+    border-bottom-style:dotted;
 	transition:0.4s ease; 
 	-webkit-transition:0.4s ease;
 	-moz-transition:0.4s ease;
@@ -98,14 +54,14 @@ nav{
 
 .post-list-item:hover{
 	background-color: rgba(0,0,6,0.05);
-	
 }
+
 
 
 /* categories list */
 .categories-list-header {
 	display: block;
-	padding: 12px 15px;
+	padding: 15px 30px;
 	border-bottom: 1px solid #c0c0c0;
 	font-size: 16px;
 	font-weight: bold;
@@ -113,7 +69,8 @@ nav{
 .categories-list-item{
 	display: block;
 	padding:8px 15px; 
-	border-bottom:1px solid #ddd; 
+	border-bottom:1px solid #ddd;
+    border-bottom-style:dotted;
 
 	transition:0.4s ease;
 	-webkit-transition:0.4s ease;
@@ -125,7 +82,6 @@ nav{
 }
 .categories-list-item:hover{
 	background-color: rgba(0,0,10,0.075);
-	color: #983;
 }
 .categories-list-item .my-badge{
 	font-size: 12px;
@@ -148,98 +104,14 @@ nav{
 	transform:rotate(360deg) scale(1.2);
 }
 
-/* shadow */
-.shadow-corner-curl{
-	
-	position: relative;
-	background-color:#f8f8fd; 
-	-webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.4),0 0 20px rgba(0,0,0,0.1) inset;
-	-moz-box-shadow: 0 1px 5px rgba(0,0,0,0.4),0 0 20px rgba(0,0,0,0.1) inset;
-	-o-box-shadow: 0 1px 5px rgba(0,0,0,0.4),0 0 20px rgba(0,0,0,0.1) inset;
-	box-shadow: 0 1px 5px rgba(0,0,0,0.4),0 0 20px rgba(0,0,0,0.1) inset;
-}
-.shadow-corner-curl:before{
-	content:"";
-	position: absolute;
-	z-index: -5;
-	width: 70%;
-	height:70%;
-	left: 9%;
-	bottom: 2%;
-	background: transparent;
-	-webkit-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-	-moz-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-	-o-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-	box-shadow: 0 8px 20px rgba(0,0,0,0.6);
 
-	/* 向左倾斜12度，再旋转4度 */
-	-webkit-transform:skew(-11deg) rotate(-4deg);
-	-moz-transform:skew(-11deg) rotate(-4deg);
-	-o-transform:skew(-11deg) rotate(-4deg);
-	-ms-transform:skew(-11deg) rotate(-4deg);
-	transform:skew(-11deg) rotate(-4deg);
-}
-.shadow-corner-curl:after{
-	content:"";
-	position: absolute;
-	z-index: -5;
-	width: 70%;
-	height:70%;
-	right: 9%;
-	bottom: 2%;
-	background: transparent;
-	-webkit-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-	-moz-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-	-o-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-	box-shadow: 0 8px 20px rgba(0,0,0,0.6);
 
-	/* 向左倾斜12度，再旋转4度 */
-	-webkit-transform:skew(11deg) rotate(4deg);
-	-moz-transform:skew(11deg) rotate(4deg);
-	-o-transform:skew(11deg) rotate(4deg);
-	-ms-transform:skew(11deg) rotate(4deg);
-	transform:skew(11deg) rotate(4deg);
-}
 
-/* footer */
-footer{
-	min-height: 50px;
-	line-height: 50px;
-	margin-top: 80px;
-	background: #3f4850;
-	color: #aaa;
-	text-align: center;
 
-	-webkit-box-shadow: 0 -2px 4px rgba(0,0,0,0.5);
-	-moz-box-shadow: 0 -2px 4px rgba(0,0,0,0.5);
-	-o-box-shadow: 0 -2px 4px rgba(0,0,0,0.5);
-	box-shadow: 0 -2px 4px rgba(0,0,0,0.5);
-}
-footer a:link {color: #aaa}		/* 未访问的链接 */
-footer a:visited {color: #888}	/* 已访问的链接 */
-footer a:hover {color: #bbb;text-decoration: none;}	/* 鼠标移动到链接上 */
-footer a:active {color: #bbb}	/* 选定的链接 */
-footer .point{
-	margin: 0 8px;
-}
-/**
- * Icons
- */
-.icon svg {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    vertical-align: middle;
-}
-
-/* post
- * post articles area
- */
 .post{
-	padding:10px 30px;
+	padding:10px 1px;
 	font-size: 16px;
 	line-height: 1.5;
-	/* -webkit-text-size-adjust: 100%; */
 }
 
 .post h4{
@@ -404,10 +276,6 @@ blockquote:last-child {
 	padding: 5px 10px 10px 10px;
 	text-indent: 2em;
 }
-#fall a:link {color: #7676AC}		/* 未访问的链接 */
-#fall a:visited {color: #715584}	/* 已访问的链接 */
-#fall a:hover {color: #5989AD;text-decoration: none;}	/* 鼠标移动到链接上 */
-#fall a:active {color: #91C3CF}	/* 选定的链接 */
 
 /**
  * 文章目录相关
@@ -418,10 +286,9 @@ blockquote:last-child {
 	}
 }
 
-#content a:link {color: #666}		/* 未访问的链接 */
-#content a:visited {color: #666}	/* 已访问的链接 */
-#content a:hover {color: #336;text-decoration: none;}	/* 鼠标移动到链接上 */
-#content a:active {color: #99b}	/* 选定的链接 */
+#content .content-fixed{
+	 position:fixed;
+}
 
 #content{
 	max-width: 292px;
@@ -436,13 +303,6 @@ blockquote:last-child {
 	/*list-style: none;*/
 	font-size: 15px;
 	line-height: 25px;
-}
-.shadow-bottom-center{
-	background-color:#f8f8fd; 
-	-webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.4),0 0 20px rgba(0,0,0,0.1) inset;
-	-moz-box-shadow: 0 1px 5px rgba(0,0,0,0.4),0 0 20px rgba(0,0,0,0.1) inset;
-	-o-box-shadow: 0 1px 5px rgba(0,0,0,0.4),0 0 20px rgba(0,0,0,0.1) inset;
-	box-shadow: 0 1px 5px rgba(0,0,0,0.4),0 0 20px rgba(0,0,0,0.1) inset;
 }
 
 #myAffix .affix{

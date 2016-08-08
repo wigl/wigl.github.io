@@ -4,15 +4,10 @@ layout: default
 <div id="index" class="row">
   <div class="col-sm-9">
     <div class="post-area">
-      <!-- small button -->
-     <!--  <p class="pull-right visible-xs">
-       <button>toggle</button>
-     </p> -->
       <div class="post-list-header">
         文章
       </div>
       <div class="post-list-body">
-        
         <div class="all-posts" post-cate="All">
           {% for post in site.posts %}
             <a class="post-list-item" href="{{ post.url | prepend: site.baseurl }}">
@@ -23,7 +18,6 @@ layout: default
             </a>
           {% endfor %}
         </div>
-        <!-- <div class="posts-in-categories"> -->
         {% for category in site.categories %}
           <div post-cate="{{category | first}}">
             {% for posts in category  %}
@@ -40,8 +34,6 @@ layout: default
             {% endfor %}
           </div>
         {% endfor %}
-        
-        <!-- </div> -->
       </div>
     </div>
   </div>
@@ -50,7 +42,6 @@ layout: default
       <div class="categories-list-header">
         分类
       </div>
-      
       <a href="javascript:;" class="categories-list-item" cate="All">
         全部<span class="my-badge"> {{site.posts | size}}</span>
       </a>
