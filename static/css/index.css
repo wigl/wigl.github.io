@@ -28,14 +28,14 @@ nav{
 }
 
 .post-list-header{
-	padding: 15px 1px;
+	padding: 1px 1px;
 	border-bottom: 1px solid #c0c0c0;
 	font-size: 30px;
 	font-weight: bold;
 }
 .post-list-item{
 	display: block;
-	padding:8px 20px 1px 30px; 
+	padding:1px 1px 1px 1px; 
 	border-bottom:1px solid #ddd;
     border-bottom-style:dotted;
 	transition:0.4s ease; 
@@ -61,7 +61,7 @@ nav{
 /* categories list */
 .categories-list-header {
 	display: block;
-	padding: 15px 30px;
+	padding: 0px 0px;
 	border-bottom: 1px solid #c0c0c0;
 	font-size: 16px;
 	font-weight: bold;
