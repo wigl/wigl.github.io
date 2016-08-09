@@ -128,7 +128,7 @@ iOS 7后新增，远程推送后台刷新，当我们发送一条带有 content-
 
 另外，无论是不是静默推送，只要带有 content-available 标志，应用程序都会进行后台刷新，所以，当我们需要刷新应用数据而不想提醒用户的时候，我们可以采用静默推送。
 
-#### 具体实现：
+#### 具体实现
 
 **第一步：**在info plist文件中对UIBackgroundModes键指定特定的值，可以在 Xcode 的 project editor 中的 Capabilities 标签页中设置，这个标签页包含了后台模式部分，可以方便配置多任务选项。如下图：
 ![图片](/image/ios_background_introduction/remote_notifications_set.png)
