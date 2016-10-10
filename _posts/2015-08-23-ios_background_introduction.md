@@ -24,7 +24,7 @@ App的运行状态包括5种，分别为：
 > 
 > 1. 以下内容均是介绍App在**Background**的运行机制，即iOS后台运行机制。
 >
-> 2. 如果你想要了解App在**Not running**时候如何让系统从后台启动App，比如当用户强制退出程序（双击Home键，上滑关闭程序）或者系统因为内存警告关闭程序依然可以**持续定位**，请参考这篇文章：[iOS后台定位](/2016/04/14/ios_location_introduction/)
+> 2. 如果你想要了解App在**Not running**时候如何让系统从后台启动App，比如当用户强制退出程序（双击Home键，上滑关闭程序）或者系统因为内存警告关闭程序依然可以**持续定位**，请参考这篇文章：[iOS后台定位](/2015/08/28/ios_location_introduction/)
 
 ## 2. iOS后台模式
 
@@ -175,7 +175,7 @@ iOS 7后新增，远程推送后台刷新，当我们发送一条带有 content-
 >   3. <font color="green"> 最后一点特别注意的是，如果应用被用户强制退出（双击Home键，通过多任务处理，上滑退出应用）或者被系统因为内存紧张等原因强制退出，那即使推送带有content-available字段的通知，我们的App不会再进行后台刷新，除非用户重新启动应用。这点和上面的 Background fetch 一样 </font>
 
 ### Location updates
-关于定位，我在[iOS后台定位](/2016/04/14/ios_location_introduction/)博客中有详细说明。
+关于定位，我在[iOS后台定位](/2015/08/28/ios_location_introduction/)博客中有详细说明。
 
 
 ### 其他后台程序刷新
