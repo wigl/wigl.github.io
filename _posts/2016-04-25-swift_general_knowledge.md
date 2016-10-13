@@ -56,7 +56,17 @@ PCH预编译导入的文件 -> 桥接文件 -> swift文件
 
 因为 A 消失的时候，会调用viewWillDisappear，从而调用他的子视图的 viewWillDisappear。
 
-### A
+### UTF8
+
+````
+var str = "ABCD☺️"
+var byteArray = [UInt8]()
+for char in str.utf8{
+    byteArray += [char]
+}
+//或者
+var buf = [UInt8](str1.utf8)
+````
 
 
 
