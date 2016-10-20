@@ -9,7 +9,7 @@ excerpt:
 * content
 {:toc}
 
-#### 配置
+#### Reveal 配置
 
 1. 在Xcode项目中，选择“View → Navigators → Show Breakpoint Navigator”。
 2. 在左边底部面板，点击"+"号按钮，然后选择“Add Symbolic Breakpoint”。
