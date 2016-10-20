@@ -10,7 +10,7 @@ excerpt:
 {:toc}
 
 
-## 常用该命令
+## 常用命令
 
 注销： `logout` `exit` `ctrl+d`
 
@@ -22,7 +22,7 @@ excerpt:
 
 用户创建： `useradd passwd`
 
-创建目录： `makdir`
+创建目录： `mkdir`
 
 显示当前工作目录： `pwd`
 
