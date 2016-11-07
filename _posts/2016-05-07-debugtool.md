@@ -20,3 +20,8 @@ excerpt:
 ````
 expr (Class)NSClassFromString(@"IBARevealLoader") == nil ? (void *)dlopen("/Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/libReveal.dylib", 0x2) : ((void*)0)
 ````
+
+#### Xcode编译时间分析
+
+1. 在target -> Build Settings-> Other Swift Flags 添加编译设置 `-Xfrontend -debug-time-function-bodies`，然后执行命令`xcodebuild -workspace yourWorkspaceName.xcworkspace -scheme schemeName clean build 2>&1 |egrep "\d.\dms"|sort -nr > times.txt`
+2. 直接执行命令`xcodebuild -workspace yourWorkspaceName.xcworkspace -scheme schemeName clean build OTHER_SWIFT_FLAGS="-Xfrontend -debug-time-function-bodies" | egrep "\d.\dms" | egrep -v "\b0.0ms"  > times.txt`
