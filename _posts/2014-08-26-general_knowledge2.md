@@ -41,3 +41,7 @@ viewController A preshent B 后，b的`presentingViewController`是： 如果A�
 //注意2： UITextView 有上下左右边距，所以使用下面函数计算的高度不能直接使用。
 func boundingRect(with size: CGSize, options: NSStringDrawingOptions = [], context: NSStringDrawingContext?) -> CGRect
 ````
+
+### 试图控制生命周期
+
+**init** -view为懒加载-> **loadView** -加载完成之后-> **viewDidLoad** -将要显示，此时view还没有superview-> **viewWillAppear** -在这个过程中，view添加的superview上-> **viewDidAppear**(view已经添加到superview上)
