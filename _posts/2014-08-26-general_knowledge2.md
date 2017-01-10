@@ -29,3 +29,15 @@ KVO是基于runtime机制实现的。当某个类的对象第一次被观察时�
 ### App启动过程
 
 main函数->UIApplicationMain(创建UIApplication和UIApplication的delegate对象)->调用didFinishLaunchingWithOption方法->创建windows->设置windows的rootViewController->显示windows
+
+### preshent
+
+viewController A preshent B 后，b的`presentingViewController`是： 如果A没有父Controller，那么就是A，否则就是A的父Controller
+
+### 计算文字高度
+
+````
+// 注意1： iOS 9 和 iOS 10 系统字体不一样，所以，NSAttributedString 如果使用了系统字体，在iOS 10 和 iOS 9情况下，计算的rect 不一样，高度不一样。
+//注意2： UITextView 有上下左右边距，所以使用下面函数计算的高度不能直接使用。
+func boundingRect(with size: CGSize, options: NSStringDrawingOptions = [], context: NSStringDrawingContext?) -> CGRect
+````
