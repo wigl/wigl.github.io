@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "小知识点 1 "
+title:  "Objective-C 语法"
 date:   2014-08-23 00:00:00
-categories: Foundation
+categories: 语法
 excerpt: 
 ---
 
@@ -269,3 +269,14 @@ extern NSString const  *abc;
 extern：该对象存在，但会在另一个文件中定义
 
 const：静态，该指针不会变化
+
+### static extern const
+- static修饰**局部变量**，只会初始化一次，且在程序退出的时候才会销毁。
+- static修饰**全局变量**，只能在本文件中使用，其他文件不能使用。
+  - static int i; 如果写在 .h 文件中，然后这个 .h 文件被其他文件导入了，那么，其他文件相当于重新声明了一个变量。
+  - 变量可以进行多次声明，但是只能定义一次。
+- extern 用以定义全局变量。
+- const 用以定义常量； const 右边的总不能被修改
+
+### KVO
+KVO是基于runtime机制实现的。当某个类的对象第一次被观察时，系统会动态地为该类创建一个派生类（派生类名在元类名前面加上`NSKVONotifying_`），派生了重写了setter方法，从而可以监控属性发生改变。
