@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "成员变量和property"
+title:  "OC 成员变量和Property"
 date:   2014-08-21 00:00:00
-categories: Foundation
+categories: 语法
 excerpt: 
 ---
 

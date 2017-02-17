@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "frame和bounds的区别以及setbounds使用"
+title:  "Frame和bounds的区别以及setbounds使用"
 date:   2014-10-07 00:00:00
 categories: UIKit
 excerpt: 
