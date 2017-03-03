@@ -59,5 +59,7 @@ sudo chmod 700 ××× （只有所有者有读和写以及执行的权限）
 sudo chmod 666 ××× （每个人都有读和写的权限）
 
 sudo chmod 777 ××× （每个人都有读和写以及执行的权限）
+
+sudo chown user file （修改file的所有者）
 ````
 
