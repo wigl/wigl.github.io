@@ -63,51 +63,50 @@ pp->height = 170;
 **结构体：**
 
 ````
-//普通定义方法
-//声明一个Person类型的结构体
+//定义一个Person结构体类型
 struct Person{
     int age;
     double height;
 };
-//声明一个变量，需要先写struct+结构体类型
+//定义一个变量，需要先写struct+结构体类型
 struct Person p;
 
 //使用typedef声明。以后定义结构体变量就不用先写struct+name了，直接写接头提类型即可
 typedef struct{
     int x;
     int y;
-}oneStructType;
-oneStructType firstStruct;
+}OneStructType;
+OneStructType firstStruct;
 
-//直接声明一个结构体变量
+//直接定义一个结构体变量
 struct{
     int x;
     int y;
-}secondStructVariable;
+}SecondStructVariable;
 ````
 
 **枚举：**
 
 ````
-//枚举基本写法
-enum oneEnum {
-    oneEnum1,
-    oneEnum2,
+//枚举类型基本写法
+enum OneEnum {
+    OneEnum1,
+    OneEnum2,
 };
-enum oneEnum x = oneEnum1;
+enum OneEnum x = OneEnum1;
 
 //使用typedef
 typedef enum{
-    secondEnum1,
-    secondEnum2,
-}secondEnum;
-secondEnum y = secondEnum1;
+    SecondEnum1,
+    SecondEnum2,
+}SecondEnum;
+SecondEnum y = SecondEnum1;
 
 //直接定义一个one的枚举变量
 enum {
-    one1,
-    one2,
-}one;
+    One1,
+    One2,
+}One;
 ````
 
 ### 类
@@ -277,11 +276,16 @@ extern：该对象存在，但会在另一个文件中定义
 const：静态，该指针不会变化
 
 ### static extern const
-- static修饰**局部变量**，只会初始化一次，且在程序退出的时候才会销毁。
-- static修饰**全局变量**，只能在本文件中使用，其他文件不能使用。
-  - static int i; 如果写在 .h 文件中，然后这个 .h 文件被其他文件导入了，那么，其他文件相当于重新声明了一个变量。
-  - 变量可以进行多次声明，但是只能定义一次。
-- extern 用以定义全局变量。
+- static修饰**局部变量/常量**，只会初始化一次，且在程序退出的时候才会销毁。
+- static修饰**全局变量/常量**，只能在本文件中使用，其他文件不能使用。
+  - static 一般写在 .m 文件中，也就是是编译单元（即实现文件，translation-unit）内，那该变量/常量只在本文件中可见。
+  - static int i; 如果写在 .h 文件中，然后这个 .h 文件被其他文件导入了，那么，其他文件相当于重新声明了一个变量/常量。
+  - 不能在两个 .m 文件中声明相同的全局变量/常量，如果不加 static 关键词，编译器会为它创建一个“外部符号”（external symbol），这样会导致编译报错。
+- extern 用以定义全局变量/常量。
+  - 变量/常量可以进行多次声明，但是只能定义一次。
+  - 通常在 .h 文件中声明。如：`extern NSString const *abc;`
+  - 在 .m 文件中定义，即： `NSString const *abc = @"123"`
+  - 上述常量存在全局符号表中“global symbol table”
 - const 用以定义常量； const 右边的总不能被修改
 
 ### KVO
