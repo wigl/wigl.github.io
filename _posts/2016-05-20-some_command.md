@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Command"
+title:  "一些常用的命令"
 date:   2016-05-20 00:00:00
 categories: Tools
 excerpt: 
