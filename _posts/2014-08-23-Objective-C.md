@@ -10,6 +10,9 @@ excerpt:
 {:toc}
 
 
+### 来源
+Objective-C 来源于Smalltalk，使用消息结构（message structure），运行时执行的代码由运行环境决定，这个过程叫做动态绑定。Swift则是函数调用（function calling），运行时执行的代码由编译器决定，从虚方法表查出需要执行的函数。
+
 ### @class
 一般用于头文件中，只是告诉文件@class后面的字符串为一个类。使用@class不用导入头文件，可以提高编译效率；也可以解决循环包含的问题。
 
@@ -283,8 +286,8 @@ const：静态，该指针不会变化
   - 不能在两个 .m 文件中声明相同的全局变量/常量，如果不加 static 关键词，编译器会为它创建一个“外部符号”（external symbol），这样会导致编译报错。
 - extern 用以定义全局变量/常量。
   - 变量/常量可以进行多次声明，但是只能定义一次。
-  - 通常在 .h 文件中声明。如：`extern NSString const *abc;`
-  - 在 .m 文件中定义，即： `NSString const *abc = @"123"`
+  - 通常在 .h 文件中声明。如：`extern NSString * const abc;`
+  - 在 .m 文件中定义，即： `NSString * const abc = @"123"`
   - 上述常量存在全局符号表中“global symbol table”
 - const 用以定义常量； const 右边的总不能被修改
 
