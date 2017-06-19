@@ -53,6 +53,8 @@ svnserve -d -r /svnDic
 touch ~/Library/LaunchAgents/LoginScripts.Test.plist
 // 在终端上执行
 launchctl load ~/Library/LaunchAgents/LoginScripts.Test.plist
+// 取消启动运行
+launchctl unload -w ~/Library/LaunchAgents/LoginScripts.Test.plist
 ````
 
 为所用用户添加:
