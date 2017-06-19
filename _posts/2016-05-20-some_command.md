@@ -86,3 +86,24 @@ sudo launchctl load /Library/LaunchAgents/LoginScripts.Test.plist
 ````
 
 参考文章[Launch shell script on login in Mac OS (OS X)](https://stackoverflow.com/questions/22842016/launch-shell-script-on-login-in-mac-os-os-x?noredirect=1)
+
+#### 命令失效问题
+
+解决开机或者Automator运行脚本部分命令失效的问题，报如类似错误：`jekyll: command not found`。
+
+解决方法，在脚本前添加如下内容：
+
+````
+if [ -x /usr/libexec/path_helper ]; then
+    eval `/usr/libexec/path_helper -s`
+fi
+if  [ -f "$HOME"/.profile ]; then
+    source "$HOME"/.profile
+elif [ -f "$HOME"/.bash_profile ]; then
+    source "$HOME"/.bash_profile
+elif [ -f "$HOME"/.bashrc ]; then
+    source "$HOME"/.bashrc
+fi
+````
+
+参考文章[stackexchange](https://apple.stackexchange.com/a/192645)
