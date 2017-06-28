@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "一些常用的命令"
+title:  "Some command"
 date:   2016-05-20 00:00:00
 categories: Tools
 excerpt: 
@@ -37,6 +37,8 @@ unset ALL_PROXY
 
 ````
 sudo spctl --master-disable
+// 删除Mac所有描述文件
+sudo profiles -D
 ````
 
 #### svnserve
@@ -109,3 +111,24 @@ fi
 ````
 
 参考文章[stackexchange](https://apple.stackexchange.com/a/192645)
+
+#### shell删除keychain中密码
+
+````
+security delete-generic-password -l "password name"
+````
+
+
+#### shell忽略错误继续执行
+
+````
+# 在命令后面加上
+|| true
+````
+
+#### 判断svn服务器是否有最新代码
+
+````
+svn status -u | grep -E -c "^\s+[^\?]"
+如果输出为 0， 则代表本地为最新代码，否则说明服务器上有新代码。
+````
