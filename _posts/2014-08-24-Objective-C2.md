@@ -27,4 +27,28 @@ char firstChar = *strAddress; //'s'
 
 ### 对象等同性
 
-**约定：**如果`isEqual:`或者`==`判断两对象相等，那么hash必须返回相同的值。但是两个对象的hash值相同，那么`isEqual:`或者`==`未必会认为两者相等。
+**约定：**如果`isEqual:`或者`==`判断两对象相等，那么hash必须返回相同的值。但是两个对象的hash值相同，那么`isEqual:`或者`==`未必会认为两者相等
+
+
+### 类
+
+`+load` 程序启动即调用所有类的load方法
+
+`+initialize` 当类第一次使用的时候调用（第一次被实例化的时候）
+
+> **根元类对象：**包含new方法，isa指向自己，任何类的根元类对象都是NSObject元类对象
+> 
+> **元类对象：**包含**类方法**
+> 
+> **类对象：**类第一次使用的时候创建，isa指针指向元类对象，元类对象保存**属性和对象方法**。
+> 
+> **实例对象：**通过类对象创建，isa指针指向类对象
+> 
+
+### SEL
+
+通过`@selector`函数可以找到方法的地址。
+
+`- (BOOL)respondsToSelector:(SEL)aSelector`
+
+`- (id)performSelector:(SEL)aSelector;`

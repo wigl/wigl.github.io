@@ -14,7 +14,7 @@ excerpt:
 Objective-C 来源于Smalltalk，使用消息结构（message structure），运行时执行的代码由运行环境决定，这个过程叫做动态绑定。Swift则是函数调用（function calling），运行时执行的代码由编译器决定，从虚方法表查出需要执行的函数。
 
 ### @class
-一般用于头文件中，只是告诉文件@class后面的字符串为一个类。使用@class不用导入头文件，可以提高编译效率；也可以解决循环包含的问题。
+向前声明，一般用于头文件中，只是告诉文件@class后面的字符串为一个类。使用@class不用导入头文件，可以提高编译效率；也可以解决循环包含的问题。
 
 ### ARC
 ARC，ARC和垃圾回收机制不同，它是编译器特性，在编译期间，根据Objective-C对象的存活周期，在适当的位置添加retain和release代码。从概念上讲，ARC与手动引用计数内存管理遵循同样的内存管理规则，ARC也无法防止循环强引用。
@@ -112,29 +112,6 @@ enum {
 }One;
 ````
 
-### 类
-
-`+load` 程序启动即调用所有类的load方法
-
-`+initialize` 当类第一次使用的时候调用（第一次被实例化的时候）
-
-> **根元类对象：**包含new方法，isa指向自己，任何类的根元类对象都是NSObject元类对象
-> 
-> **元类对象：**包含**类方法**
-> 
-> **类对象：**类第一次使用的时候创建，isa指针指向元类对象，元类对象保存**属性和对象方法**。
-> 
-> **实例对象：**通过类对象创建，isa指针指向类对象
-> 
-
-### SEL
-
-通过`@selector`函数可以找到方法的地址。
-
-`- (BOOL)respondsToSelector:(SEL)aSelector`
-
-`- (id)performSelector:(SEL)aSelector;`
-
 ### category
 
 用处：
@@ -163,6 +140,23 @@ enum {
 ````
 @interface ClassName()
 @end
+````
+
+#### Readonly
+
+将对象属性尽量设置为不可变，在`.h`文件中见属性封装为readonly；有时候又希望在对象内部使用该属性的setter方法，那么可以借助类扩展，在`.m`中将对象重新封装成readwrite。
+
+比如：
+
+````
+// .h文件
+@interface Person : NSObject
+@property (nonatomic, copy, readonly) NSString *firstName;
+@end
+// .m文件
+@property (nonatomic, copy, readwrite) NSString *firstName;
+@end
+
 ````
 
 #### 两者区别
@@ -283,7 +277,7 @@ const：静态，该指针不会变化
 - static修饰**全局变量/常量**，只能在本文件中使用，其他文件不能使用。
   - static 一般写在 .m 文件中，也就是是编译单元（即实现文件，translation-unit）内，那该变量/常量只在本文件中可见。
   - static int i; 如果写在 .h 文件中，然后这个 .h 文件被其他文件导入了，那么，其他文件相当于重新声明了一个变量/常量。
-  - 不能在两个 .m 文件中声明相同的全局变量/常量，如果不加 static 关键词，编译器会为它创建一个“外部符号”（external symbol），这样会导致编译报错。
+  - 不能在两个 .m 文件中声明相同的全局变量/常量/c函数（即不加 static 关键词），编译器会为它创建一个“外部符号”（external symbol），这样会导致编译报错。
 - extern 用以定义全局变量/常量。
   - 变量/常量可以进行多次声明，但是只能定义一次。
   - 通常在 .h 文件中声明。如：`extern NSString * const abc;`
