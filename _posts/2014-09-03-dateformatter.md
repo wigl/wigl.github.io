@@ -2,7 +2,7 @@
 layout: post
 title:  "NSDate NSTimeZone NSDateFormatter"
 date:   2014-09-03 00:00:00
-categories: UIKit
+categories: App
 excerpt: 
 ---
 
