@@ -2,7 +2,7 @@
 layout: post
 title:  "iOS开发证书"
 date:   2014-08-15 00:00:00
-categories: Tools
+categories: App
 excerpt: 
 ---
 

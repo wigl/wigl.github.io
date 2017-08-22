@@ -41,13 +41,7 @@ sudo spctl --master-disable
 sudo profiles -D
 ````
 
-#### svnserve
-
-````
-svnserve -d -r /svnDic
-````
-
-#### mac启动运行程序
+#### mac开机启动程序
 
 为某个用户添加：
 
@@ -91,7 +85,9 @@ sudo launchctl load /Library/LaunchAgents/LoginScripts.Test.plist
 
 参考文章[Launch shell script on login in Mac OS (OS X)](https://stackoverflow.com/questions/22842016/launch-shell-script-on-login-in-mac-os-os-x?noredirect=1)
 
-#### 命令失效问题
+#### Shell
+
+##### 命令失效问题
 
 解决开机或者Automator运行脚本部分命令失效的问题，报如类似错误：`jekyll: command not found`。
 
@@ -108,27 +104,60 @@ elif [ -f "$HOME"/.bash_profile ]; then
 elif [ -f "$HOME"/.bashrc ]; then
     source "$HOME"/.bashrc
 fi
+// 这个bug的原因是，Automator默认环境搜索路径不包括`/usr/local/bin`，所以也可以在脚本前添加如下命令解决该问题
+export PATH=/usr/local/bin:$PATH
+// Mac系统的环境变量，加载顺序为：
+/etc/profile /etc/paths ~/.bash_profile ~/.bash_login ~/.profile ~/.bashrc
+// PATH 语法
+export PATH=$PATH:<PATH 1>:<PATH 2>:<PATH 3>:<PATH N>
+export PATH=<PATH 1>:<PATH 2>:<PATH 3>:<PATH N>:$PATH
 ````
 
 参考文章[stackexchange](https://apple.stackexchange.com/a/192645)
 
-#### shell删除keychain中密码
+##### 删除keychain中密码
 
 ````
 security delete-generic-password -l "password name"
 ````
 
 
-#### shell忽略错误继续执行
+##### 忽略错误继续执行
 
 ````
 # 在命令后面加上
 || true
 ````
 
-#### 判断svn服务器是否有最新代码
+#### svn
+
+##### svnserve
+
+````
+svnserve -d -r /svnDic
+````
+
+##### 判断svn服务器是否有最新代码
 
 ````
 svn status -u | grep -E -c "^\s+[^\?]"
 如果输出为 0， 则代表本地为最新代码，否则说明服务器上有新代码。
+````
+
+#### SSH秘钥生成
+
+````
+$ cd ~/.ssh
+$ ssh-keygen -t rsa -C "text@text.com" -f my.key //key名字为my.key
+````
+
+#### Gem
+
+````
+$ gem sources --remove https://rubygems.org/
+$ gem sources -a https://ruby.taobao.org/
+# 请确保下列命令的输出只有 ruby.taobao.org
+$ gem sources -l
+*** CURRENT SOURCES ***
+https://ruby.taobao.org
 ````
