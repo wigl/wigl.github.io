@@ -52,3 +52,62 @@ char firstChar = *strAddress; //'s'
 `- (BOOL)respondsToSelector:(SEL)aSelector`
 
 `- (id)performSelector:(SEL)aSelector;`
+
+### 循环
+
+**C语言循环**
+
+````
+for (int i = 0; i < num; i++) {
+}
+````
+
+**OC 1.0 中的枚举器`NSEnumerator`**
+
+OC中的collection都提供了响应的方法，获取相应的枚举器，从而通过枚举器的`nextObject()`获取下一个遍历的对象。
+
+**快速遍历**
+
+OC 2.0 后，collection都遵从了`NSFastEnumeration`协议，从而可以使用`for` `in`进行快速遍历。
+
+Swift的collection都遵从`Sequence`协议，也可以使用快速遍历。
+
+**block/closure**
+
+````
+//OC
+- (void)enumerateObjectsUsingBlock:(void (NS_NOESCAPE ^)(ObjectType obj, NSUInteger idx, BOOL *stop))block
+//Swift
+func forEach(_ body: (Element) throws -> Void) rethrows
+````
+
+**遍历collection是否可以修改**
+
+````
+// Swift
+在Swift中，for-in和forEach遍历的时候，可以修改原collection，实际上遍历的是collection的copy。
+// OC
+OC中，for-in循环不能修改、添加、插入。
+而c与语言循环、块枚举可以修改，添加、插入等操作可能造成遍历一直进行。
+总之，不应该在遍历的时候修改collection。
+````
+
+### Timer 弱引用
+
+````
+extension Timer {
+    class func scheduledTimer(timeInterval interval: TimeInterval, repeats: Bool, closure: ()->Void) -> Timer{
+        return self.scheduledTimer(timeInterval: interval, target: self, selector: #selector(closureMethond(timer:)), userInfo: closure, repeats: repeats)
+    }
+    @objc private class func closureMethond(timer: Timer) {
+        if let closure = timer.userInfo as? ()->Void {
+            closure()
+        }
+    }
+}
+````
+
+
+
+
+

@@ -15,7 +15,7 @@ excerpt:
 ````
 gem install jekyll
 -n /usr/local/bin
-jekyll serve --detach
+jekyll serve --detach --host=0.0.0.0
 pkill -f jekyll
 ````
 
