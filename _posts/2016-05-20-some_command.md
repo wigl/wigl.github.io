@@ -161,3 +161,20 @@ $ gem sources -l
 *** CURRENT SOURCES ***
 https://ruby.taobao.org
 ````
+
+### CocoaPods
+
+- 安装
+
+````
+$ sudo gem install cocoapods 
+$ pod setup 
+````
+
+- 使用
+
+````
+pod install --verbose --no-repo-update
+//更新本地仓库
+pod repo update
+````
