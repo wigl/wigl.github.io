@@ -49,7 +49,7 @@ sudo profiles -D
 touch ~/Library/LaunchAgents/LoginScripts.Test.plist
 // 在终端上执行
 launchctl load ~/Library/LaunchAgents/LoginScripts.Test.plist
-// 取消启动运行
+// 取消启动运行 -w 参数会使得该程序不能以任何方式启动。如果想要重新启动，请使用 launchctl load -w 命令
 launchctl unload -w ~/Library/LaunchAgents/LoginScripts.Test.plist
 ````
 
