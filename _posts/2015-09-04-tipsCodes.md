@@ -256,3 +256,64 @@ extension UIResponder {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 ````
+
+### AttributedString 删除空白行
+
+````
+extension NSMutableAttributedString {
+    
+     static func attributeString(HTML str: String, style: String, isRemoveEmpty: Bool = true) -> NSMutableAttributedString? {
+        guard let data = str.appending(style).data(using: .unicode) else {
+            return nil
+        }
+        guard let mutAttribute = try? NSMutableAttributedString.init(data: data, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil) else {
+            return nil
+        }
+        if isRemoveEmpty {
+            mutAttribute.removeEmpty()
+        }
+        return mutAttribute
+    }
+    
+    func removeEmpty() {
+        var ranges: [NSRange] = []
+        let predicate = NSPredicate(format: "SELF MATCHES %@", "[\\s]*$")
+        self.enumerateAttributes(in: NSRange.init(location: 0, length: self.length), options: [], using: { (dic, r, _) in
+            let st = self.attributedSubstring(from: r).string
+            if predicate.evaluate(with: st){
+                ranges.append(r)
+            }else{
+                if r.location == 0 {
+                    if st.hasPrefix("\n\n") {
+                        let range = NSRange.init(location: r.location, length: 2)
+                        ranges.append(range)
+                    }else if st.hasPrefix("\n"){
+                        let range = NSRange.init(location: r.location, length: 1)
+                        ranges.append(range)
+                    }
+                }
+                if st.hasSuffix("\n\n"){
+                    let range = NSRange.init(location: r.location + r.length - 1, length: 1)
+                    ranges.append(range)
+                }else if st.hasSuffix("\n") && (r.location + r.length) == self.length{
+                    let range = NSRange.init(location: r.location + r.length - 1, length: 1)
+                    ranges.append(range)
+                }
+            }
+            if let paragraphStyle = dic[NSParagraphStyleAttributeName] as? NSParagraphStyle,
+                "\(paragraphStyle)".contains("NSTextTableBlock"){
+                if let lastRage = ranges.last,
+                    (lastRage.location + lastRage.length) == r.location{
+                    ranges.removeLast()
+                }
+            }
+        })
+        var removeLength = 0
+        for r in ranges {
+            self.deleteCharacters(in: NSRange.init(location: r.location - removeLength, length: r.length))
+            removeLength = removeLength + r.length
+        }
+    }
+}
+````
+
