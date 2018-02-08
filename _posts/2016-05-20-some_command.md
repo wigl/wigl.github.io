@@ -31,6 +31,8 @@ brew services start/stop/restart jenkins
 export ALL_PROXY=socks5://127.0.0.1:1080
 curl ip.cn //查看ip地址
 unset ALL_PROXY
+// ssh使用代理
+ssh jp@HOST -p PORT -o "ProxyCommand /usr/bin/nc -X 5 -x 127.0.0.1:1080 %h %p"
 ````
 
 #### 安装任何来源软件
@@ -104,13 +106,18 @@ elif [ -f "$HOME"/.bash_profile ]; then
 elif [ -f "$HOME"/.bashrc ]; then
     source "$HOME"/.bashrc
 fi
-// 这个bug的原因是，Automator默认环境搜索路径不包括`/usr/local/bin`，所以也可以在脚本前添加如下命令解决该问题
+# 这个bug有两个原因：
+# 1.默认环境搜索路径不包括`/usr/local/bin`等，使用第一个判断语句，`if then eval` 解决这个问题;同时，也可是手动添加：
 export PATH=/usr/local/bin:$PATH
-// Mac系统的环境变量，加载顺序为：
+# Mac系统的环境变量，加载顺序为：
 /etc/profile /etc/paths ~/.bash_profile ~/.bash_login ~/.profile ~/.bashrc
-// PATH 语法
+# PATH 语法
 export PATH=$PATH:<PATH 1>:<PATH 2>:<PATH 3>:<PATH N>
 export PATH=<PATH 1>:<PATH 2>:<PATH 3>:<PATH N>:$PATH
+# 2. source ????
+# 脚本前应该加上下面两行：
+# #!/bin/bash -l   -l表示使用当前shell登录的环境
+# export LC_ALL="en_US.UTF-8"
 ````
 
 参考文章[stackexchange](https://apple.stackexchange.com/a/192645)
@@ -177,4 +184,17 @@ $ pod setup 
 pod install --verbose --no-repo-update
 //更新本地仓库
 pod repo update
+````
+
+### Python
+
+````
+##### xgboost #########
+brew install gcc@5
+env CC=gcc-5 CXX=g++-5 pip install xgboost
+https://github.com/dmlc/xgboost/issues/1501#issuecomment-292209578
+
+##### lightgbm #########
+brew install open-mpi
+pip install lightgbm
 ````
