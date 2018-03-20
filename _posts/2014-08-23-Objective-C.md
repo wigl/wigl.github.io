@@ -10,8 +10,6 @@ excerpt:
 {:toc}
 
 
-### 来源
-Objective-C 来源于Smalltalk，使用消息结构（message structure），运行时执行的代码由运行环境决定，这个过程叫做动态绑定。Swift则是函数调用（function calling），运行时执行的代码由编译器决定，从虚方法表查出需要执行的函数。
 
 ### @class
 向前声明，一般用于头文件中，只是告诉文件@class后面的字符串为一个类。使用@class不用导入头文件，可以提高编译效率；也可以解决循环包含的问题。
