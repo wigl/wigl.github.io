@@ -107,6 +107,24 @@ extension Timer {
 }
 ````
 
+### @try
+
+可能导致内存泄漏：
+
+````
+@try{
+    Dog *dog = [[Dog alloc] init];
+    @throw  [[NSException alloc] initWithName:@"name" reason:@"some reason" userInfo:nil];
+}
+@catch (NSException *exception) {
+    NSLog(@"error = %@", exception);
+}
+````
+
+上述代码，`dog`对象不会被释放。
+
+MJExtension使用了`@try`机制，当对象属性为readonly的时候，使用自定转模型创建对象，会触发`- (void)setValue:(nullable id)value forKey:(NSString *)key;`抛出异常，导致该对象内存泄漏。
+
 
 
 
