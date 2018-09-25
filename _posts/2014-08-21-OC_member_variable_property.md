@@ -40,7 +40,7 @@ excerpt:
 - **@public:**公开的成员变量，可以任何类中使用。
 - **@package:**在自己的包中，效果类似于@public，在包外，效果类似于@private.
 
-> **注意：**虽然私有成员变量依然可以通过KVC去访问和修改，iOS中没有真正的私有成员变量。
+> **注意：**私有成员变量依然可以通过KVC去访问和修改，iOS中没有真正的私有成员变量。
 
 #### .h和.m中声明的区别
 
@@ -60,8 +60,8 @@ excerpt:
 
 当我们写`@property type name`，编译器会帮我们做如下操作：
 
-1. 自动以'_'开头生成成员变量。**实在.m文件中生成的，并且成员变量是私有的！！**
-2. 自动实现申明和实现的setter和getter方法。
+1. 自动以'_'开头生成成员变量。**在.m文件中生成的，并且成员变量是私有的！！**
+2. 自动申明和实现的setter和getter方法。
 3. 如果自己重写了其中一个setter或者getter方法，property会自动生成另一个方法。
 4. 如果setter和getter方法都重写了，那么编译器**不会自动生成成员变量**。
 
@@ -86,7 +86,7 @@ Xcode4.4之前，@property和@synthesize独立工作。@property负责声明sett
 
 如果没有告诉系统将传入的值赋值给谁，系统工会默认给和@synthesize后面写的**名称相同的成员变量**，比如：`@synthesize name; //等同于 @synthesize name = name;`
 
-> **注意：**如果没有声明成员成员变量，比如我们setter和getter方法都重写了，那么@synthesizet同时也会生成成员变量。
+> **注意：**如果没有声明成员变量，比如我们setter和getter方法都重写了，那么@synthesizet同时也会生成成员变量。
 
 那什么情况下需要我们手动写@synthesize呢？引用[stackoverflow](http://stackoverflow.com/questions/19784454/when-should-i-use-synthesize-explicitly)上的一段话：
 
