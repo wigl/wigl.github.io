@@ -31,8 +31,6 @@ brew services start/stop/restart jenkins
 export ALL_PROXY=socks5://127.0.0.1:1080
 curl ip.cn //查看ip地址
 unset ALL_PROXY
-// ssh使用代理
-ssh jp@HOST -p PORT -o "ProxyCommand /usr/bin/nc -X 5 -x 127.0.0.1:1080 %h %p"
 ````
 
 #### 安装任何来源软件
@@ -114,7 +112,7 @@ export PATH=/usr/local/bin:$PATH
 # PATH 语法
 export PATH=$PATH:<PATH 1>:<PATH 2>:<PATH 3>:<PATH N>
 export PATH=<PATH 1>:<PATH 2>:<PATH 3>:<PATH N>:$PATH
-# 2. source ????
+# 2. source
 # 脚本前应该加上下面两行：
 # #!/bin/bash -l   -l表示使用当前shell登录的环境
 # export LC_ALL="en_US.UTF-8"

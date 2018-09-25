@@ -52,8 +52,6 @@ NSTimeZone *timeZone1 = [NSTimeZone timeZoneForSecondsFromGMT:60*60*8];
 
 将语言、文化、公约和标准封装起来的抽象类，比如封装十进制符号，货币符号、日期显示格式等。
 
-**问题：**`+ systemLocale` 这个到底是啥玩意啊？
-
 **代码：**
 
 ````
