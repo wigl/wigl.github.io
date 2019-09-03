@@ -47,7 +47,7 @@ pp->height = 170;
 **注意：**
 
 > 1. 结构体变量是在定义的时候即进行初始化的。
-> 2. 结构体赋值是拷贝过程。比如`CGRect x = view.frame`是讲view的frame值拷贝一份给x。
+> 2. 结构体赋值是拷贝过程。比如`CGRect x = view.frame`是将view的frame值拷贝一份给x。
 > 3. 所以view中的结构体不能直接修改。因为`CGRect x = view.frame`和`CGRect y = view.frame`中`x`和`y`不是一个值（地址不一样），实际上都是从`view.frame`拷贝过来的，是新值。
 
 #### 对象
@@ -126,7 +126,7 @@ enum {
 
 注意：
 
-1. 分类不能添加成员变。
+1. 分类不能添加成员变量。
 2. @property 只会生成setter/getter方法的声明，不会生成实现和私有成员变量。（可以通过runtime添加方法的实现）
 3. 分类中可以访问原有类中的.h的成员变量。
 4. 分类中的方法和原类方法名重合后，覆盖原有方法。

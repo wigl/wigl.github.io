@@ -72,3 +72,8 @@ excerpt:
 > 
 > 2>&1标准错误拷贝了标准输出的行为，但此时标准输出还是在终端。>file 后输出才被重定向到file，但标准错误仍然保持在终端。
 >
+
+
+## Licenses
+
+![后台模式](/image/developer_basic/free_software_licenses.png)
