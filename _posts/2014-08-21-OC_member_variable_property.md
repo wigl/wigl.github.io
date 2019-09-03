@@ -70,7 +70,7 @@ excerpt:
 - **readwrite：**，默认修饰词，同时生成get方法和set方法的声明和实现- **readonly：**只生成get方法的声明和实现
 - **getter = ... ，setter = ...：** 用于修改setter和getter方法的名字- **assign：**set方法的实现是直接赋值，用于基本数据类型- **retain,strong：**默认修饰词，set方法的实现是release旧值，retain新值，用于OC对象类型- **copy：**set方法的实现是release旧值，copy新值，用于NSString、block等类型
 - **weak：**不做release和retain操作，用于OC对象类型。
-- **unsafe_unretained:**早起的weak，当对象释放后，不会讲对象置为nil。- **nonatomic：**非原子性，set方法的实现不加锁（比atomic性能高，默认为atomic修饰词）
+- **unsafe_unretained:**早起的weak，当对象释放后，不会将对象置为nil。- **nonatomic：**非原子性，set方法的实现不加锁（比atomic性能高，默认为atomic修饰词）
 
 > **注意：**assign和weak都可以用于需要弱引用的OC对象，不同的是，被weak修饰的对象当被销毁的时候会被置为nil，而assign不会置为nil，这样可能导致野指针错误。
 

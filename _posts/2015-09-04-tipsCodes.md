@@ -10,20 +10,6 @@ excerpt:
 {:toc}
 
 
-### 渐变模糊视图
-
-````
-- (void)addGradientView
-{
-    UIView *view = [[UIView alloc]init];
-    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = view.bounds;
-    [view.layer addSublayer:gradientLayer];
-    gradientLayer.colors     = @[(__bridge id)[UIColor redColor].CGColor, (__bridge id)[UIColor whiteColor].CGColor];
-    gradientLayer.startPoint = CGPointMake(0, 0);
-    gradientLayer.endPoint   = CGPointMake(1, 0);
-}
-````
 
 ### 取消CALayer动画
 
