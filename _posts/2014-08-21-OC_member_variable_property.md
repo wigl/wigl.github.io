@@ -76,7 +76,14 @@ excerpt:
 
 那weak是如何实现自动置nil？实际上是通过runtime机制实现的：
 
->runtime 对注册的类， 会进行布局，对于 weak 对象会放入一个 hash 表中。 用 weak 指向的对象内存地址作为 key，当此对象的引用计数为0的时候会 dealloc，假如 weak 指向的对象内存地址是a，那么就会以a为键， 在这个 weak 表中搜索，找到所有以a为键的 weak 对象，从而设置为 nil。
+> Runtime维护了一个hash map，用于存储指向对象的引用计数、所有指向该对象的weak指针地址等。
+>
+> 即SideTables，该表以对象地址作为key，value为SideTable。SideTable包括spinlock_t、RefcountMap以及weak_table_t；weak_table_t有个集合，包含所有的weak指针地址。
+>
+> 当使用__weak时候，runtime会调用objc_initWeak、storeWeak等方法，更新SideTable，将weak指针地址存储至weak_table_t的集合中。
+> 
+> 当对象释放后，以该对象地址为key，查找SideTables，找到weak_table_t，进而找到所有的weak指针地址，将所有的weak指针指向置位nil
+
 
 ## @synthesize 
 
